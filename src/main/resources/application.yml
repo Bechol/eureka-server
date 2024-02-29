@@ -1,0 +1,36 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+management:
+  info:
+    java:
+      enabled: true
+  endpoint:
+    env:
+      enabled: true
+    refresh:
+      enabled: true
+    health:
+      show-details: always
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+
+opentracing:
+  jaeger:
+    http-sender:
+      url: http://jaeger-service:14268/api/traces
