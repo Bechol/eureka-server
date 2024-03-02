@@ -106,7 +106,6 @@
                         <image>bechol/apd-cloud-${project.name}</image>
                         <tags>
                             <tag>latest</tag>
-                            <tag>${project.version}</tag>
                         </tags>
                     </to>
                 </configuration>
@@ -135,7 +134,7 @@
             </build>
         </profile>
         <profile>
-            <id>docker_hub</id>
+            <id>docker-hub</id>
             <build>
                 <plugins>
                     <plugin>
