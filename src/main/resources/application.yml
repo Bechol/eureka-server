@@ -32,5 +32,6 @@ management:
 
 opentracing:
   jaeger:
+    enabled: ${JAEGER_CLIENT_ENABLED:true}
     http-sender:
-      url: http://jaeger-service:14268/api/traces
+      url: http://${JAEGER_URL:jaeger-service:14268}/api/traces
