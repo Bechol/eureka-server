@@ -9,14 +9,13 @@
     <version>1.0</version>
 
     <properties>
-        <java.version>11</java.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <java.version>17</java.version>
+        <maven.compiler.release>17</maven.compiler.release>
         <spring-boot.version>2.7.11</spring-boot.version>
         <spring-cloud.version>2021.0.7</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.image.prefix>apd-cloud</docker.image.prefix>
         <jib-maven-plugin.version>3.3.2</jib-maven-plugin.version>
-        <opentracing-jaeger-starter.version>3.3.1</opentracing-jaeger-starter.version>
     </properties>
 
     <dependencyManagement>
@@ -35,11 +34,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>io.opentracing.contrib</groupId>
-                <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
-                <version>${opentracing-jaeger-starter.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -63,10 +58,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -74,18 +65,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <layers>
-                        <enabled>true</enabled>
-                        <includeLayerTools>true</includeLayerTools>
-                    </layers>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
