@@ -8,9 +8,9 @@ pipeline {
                     image 'maven 3.5.0'
                 }
             }
+            steps {
+                sh 'mvn clean install'
+            }
         }
-    }
-    steps {
-        sh 'mvn clean install'
     }
 }
