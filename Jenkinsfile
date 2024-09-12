@@ -1,20 +1,16 @@
+#!groovy
 pipeline {
-    agent docker
+    agent none
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+        stage('Maven clean install') {
+            agent {
+                docker {
+                    image 'maven 3.5.0'
                 }
             }
         }
+    }
+    steps {
+        sh 'mvn clean install'
     }
 }
