@@ -9,5 +9,10 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+        stage('Build docker image') {
+            steps {
+                bat 'docker build . -t eureka-srv'
+            }
+        }
     }
 }
