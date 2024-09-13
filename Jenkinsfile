@@ -14,5 +14,10 @@ pipeline {
                 bat 'docker build . -t eureka-srv'
             }
         }
+        stage('Deploy to docker') {
+            steps {
+                bat 'docker run --name eureka-server -d -p 8761:8761 eureka-srv'
+            }
+        }
     }
 }
