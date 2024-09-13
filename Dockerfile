@@ -1,5 +1,5 @@
 FROM openjdk:17-alpine
-LABEL maintainer="Bech Oleg Igorevich"
+ARG JAR_FILE=/target/*.jar
 EXPOSE 8761
-COPY ./target/eureka-server-1.0.jar ROOT.jar
+COPY ${JAR_FILE} eureka.jar
 ENTRYPOINT ["java",  "-jar", "ROOT.jar"]
